@@ -25,7 +25,6 @@ def ir_historial():
     ventana.destroy()
     historial_ventas.mostrar_historial()
 
-
 class Ventana(Frame):
     def __init__(self, master):
         super().__init__(master)
@@ -60,28 +59,28 @@ class Ventana(Frame):
         self.frame_dos.columnconfigure(0, weight=1)
         self.frame_dos.rowconfigure(0, weight=1)
 
-        Button(self.frame_titulo, text='REGRESAR', font = ('Arial', 9, 'bold'), command=salir_ventas, fg='black', bg = '#C3C3C3', width=20, bd=3).grid(column=0, row=0, pady=5)
-        Button(self.frame_titulo, text='PRONOSTICO', font = ('Arial', 9, 'bold'), command=ir_pronostico, fg='black', bg = '#C3C3C3', width=20, bd=3).grid(column=2, row=0, pady=5)
-        Button(self.frame_titulo, text='TICKETS', font = ('Arial', 9, 'bold'), command=ir_tickets, fg='black', bg = '#C3C3C3', width=20, bd=3).grid(column=3, row=0, pady=5)
-        Button(self.frame_titulo, text='HISTORIAL VENTAS', font = ('Arial', 9, 'bold'), command=ir_historial, fg='black', bg = '#C3C3C3', width=20, bd=3).grid(column=4, row=0, pady=5)
-        Label(self.frame_titulo, text= 'Ventas', bg='#E0E0E0', fg='black', font=('Kaufmann BT', 28, 'bold')).grid(columnspan=5, column=0, row=1, pady=5)
+        Button(self.frame_titulo, text='REGRESAR', font = ('Arial', 10, 'bold'), command=salir_ventas, fg='white', bg = 'dimgray', width=20, height=2, bd=3).grid(column=0, row=0, pady=10, padx=10)
+        Button(self.frame_titulo, text='PRONOSTICO', font = ('Arial', 10, 'bold'), command=ir_pronostico, fg='white', bg = 'dimgray', width=20, height=2, bd=3).grid(column=1, row=0, pady=10, padx=10)
+        Button(self.frame_titulo, text='TICKETS', font = ('Arial', 10, 'bold'), command=ir_tickets, fg='white', bg = 'dimgray', width=20, height=2, bd=3).grid(column=2, row=0, pady=10, padx=10)
+        Button(self.frame_titulo, text='HISTORIAL VENTAS', font = ('Arial', 10, 'bold'), command=ir_historial, fg='white', bg = 'dimgray', width=20, height=2, bd=3).grid(column=3, row=0, pady=10, padx=10)
+        Label(self.frame_titulo, text= 'VENTAS', bg='#E0E0E0', fg='black', font=('Kaufmann BT', 28, 'bold')).grid(columnspan=5, column=0, row=1, pady=5)
 
-        Label(self.frame_uno, text= 'Opciones', bg='#E0E0E0', fg='black', font=('Kaufmann BT', 13, 'bold')).grid(column=2, row=0)
+        Label(self.frame_uno, text= 'OPCIONES', bg='#E0E0E0', fg='black', font=('Kaufmann BT', 13, 'bold')).grid(column=2, row=0)
 
-        Label(self.frame_uno, text= 'Datos', bg='#E0E0E0', fg='black', font=('Kaufmann BT', 13, 'bold')).grid(columnspan=2, column=0, row=0, pady=5)
-        Label(self.frame_uno, text= 'Nombre Platillo', bg='#E0E0E0', fg='black', font=('Kaufmann BT', 13, 'bold')).grid(column=0, row=1, pady=5)
-        Label(self.frame_uno, text= 'Cantidad', bg='#E0E0E0', fg='black', font=('Kaufmann BT', 13, 'bold')).grid(column=0, row=2, pady=5)
+        Label(self.frame_uno, text= 'DATOS', bg='#E0E0E0', fg='black', font=('Kaufmann BT', 13, 'bold')).grid(columnspan=3, column=0, row=0, pady=5)
+        Label(self.frame_uno, text= 'NOMBRE DEL PLATILLO', bg='#E0E0E0', fg='black', font=('Kaufmann BT', 13, 'bold')).grid( column=0, row=1, pady=5)
+        Label(self.frame_uno, text= 'CANTIDAD', bg='#E0E0E0', fg='black', font=('Kaufmann BT', 13, 'bold')).grid(column=0, row=2, pady=5)
 
-        self.etiquetaTotal = Label(self.frame_uno, text= 'Total a pagar: $', bg='white', fg='black', font=('Kaufmann BT', 18, 'bold'), bd=3, relief='groove', highlightbackground="black", highlightthickness=1, padx=5, pady=5)
-        self.etiquetaTotal.grid(column=1, row=3, pady=5)
+        self.etiquetaTotal = Label(self.frame_uno, text= 'TOTAL A PAGAR: $', bg='white', fg='black', font=('Kaufmann BT', 14, 'bold'), bd=3, relief='groove', highlightbackground="black", highlightthickness=1, padx=5, pady=5)
+        self.etiquetaTotal.grid(column=0,columnspan=3, row=3, pady=5)
 
-        Entry(self.frame_uno, textvariable=self.cantidad , font=('Kaufmann BT', 12), highlightbackground="black", highlightthickness=1).grid(column=1, row=2)
+        Entry(self.frame_uno, textvariable=self.cantidad , font=('Kaufmann BT', 12), highlightbackground="black", highlightthickness=1).grid(columnspan=3,column=0, row=2)
 
         datos = self.base_datos.valores_combo()
         opciones_platillo = datos
         self.combo_platillo = ttk.Combobox(self.frame_uno, values=opciones_platillo, font=('Kaufmann BT', 12))
         self.combo_platillo.set(opciones_platillo[0])
-        self.combo_platillo.grid(row=1, column=1)
+        self.combo_platillo.grid(row=1, column=0, columnspan=3)
         self.nombre = self.combo_platillo.get()
 
         #BOTONES DE FUNCIONES DE LA DERECHA
@@ -110,8 +109,8 @@ class Ventana(Frame):
 
         self.tabla.heading('#0', text="Nombre", anchor='center')
         self.tabla.heading('Cantidad', text="Cantidad", anchor='center')
-        self.tabla.heading('PrecioUnitario', text="PrecioUnitario", anchor='center')
-        self.tabla.heading('PrecioAgrupado', text="PrecioAgrupado", anchor='center')
+        self.tabla.heading('PrecioUnitario', text="Precio Unitario", anchor='center')
+        self.tabla.heading('PrecioAgrupado', text="Precio Agrupado", anchor='center')
 
         self.tabla.bind("<Double-1>", self.eliminar_datos)
 
@@ -245,15 +244,19 @@ class Ventana(Frame):
         df.to_excel((f'MENU {fecha}.xlsx'))
         messagebox.showinfo('Informacion', 'Datos guardados')
 
+
 def mostrar_ventas():
     global ventana
     ventana = Tk()
-    ventana.title('Ventas')
+    ventana.title('Frewed Commerce')  # Agrega el título a la ventana
     ventana.minsize(height=400, width=600)
     ventana.geometry('800x500+250+100')
-    # ventana.call('wm', 'iconphoto', ventana._w, PhotoImage(file='logo.png'))
+
+    # Establecer el ícono de la ventana
+    ventana.iconbitmap("imagenes/logo.ico")  # Asegúrate de que la ruta del archivo sea correcta
+
     app = Ventana(ventana)
-    #app.actualizar_tabla()
+    # app.actualizar_tabla()  # Si es necesario, puedes actualizar la tabla aquí
     ventana.mainloop()
 
 if __name__ == "__main__":
